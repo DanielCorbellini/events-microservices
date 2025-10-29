@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  # events-service:
+  #   build:
+  #     context: ../services/events-service
+  #   container_name: events-service
+  #   ports:
+  #     - "8081:8080"
+  #   networks:
+  #     - events-net
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=dev
+  #     - SERVER_PORT=8080
+
+  events-user-service:
+    build:
+      context: ../services/events-user-service
+    container_name: events-user-service
+    ports:
+      - "8081:8081"
+    networks:
+      - events-net
+    environment:
+      - DEPLOYMENT_PORT=8081
+      - DATASOURCE_URL=jdbc:postgresql://db:5432/eventos
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=postgres
+      - DATASOURCE_DRIVER=org.postgresql.Driver
+    depends_on:
+      - db  # Garante que o banco inicie primeiro
+
+  db:
+    image: postgres
+    container_name: events-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: eventos
+    ports:
+      - "5432:5432"
+    networks:
+      - events-net
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+volumes:
+  pgdata:
+networks:
+  events-net:
+    driver: bridge
