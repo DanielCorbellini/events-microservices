@@ -4,3 +4,6 @@
 [submodule "services/events-email-service"]
 	path = services/events-email-service
 	url = https://github.com/LuccaHeineck/events-email-service.git
+[submodule "services/events-gateway"]
+	path = services/events-gateway
+	url = https://github.com/LuccaHeineck/events-gateway.git
