@@ -12,6 +12,20 @@ services:
   #   environment:
   #     - SPRING_PROFILES_ACTIVE=dev
   #     - SERVER_PORT=8080
+  events-gateway:
+    build:
+      context: ../services/events-gateway
+    container_name: events-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - events-net
+    environment:
+      - DEPLOYMENT_PORT=8080
+      - SPRING_PROFILES_ACTIVE=dev
+    depends_on:
+      - events-user-service
+      - events-email-service
 
   events-user-service:
     build:
@@ -23,21 +37,32 @@ services:
       - events-net
     environment:
       - DEPLOYMENT_PORT=8081
-      - DATASOURCE_URL=jdbc:postgresql://db:5432/eventos
-      - DATASOURCE_USERNAME=postgres
-      - DATASOURCE_PASSWORD=postgres
-      - DATASOURCE_DRIVER=org.postgresql.Driver
+      - DATASOURCE_URL=${DATASOURCE_URL}
+      - DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
+      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+      - DATASOURCE_DRIVER=${DATASOURCE_DRIVER}
     depends_on:
       - db  # Garante que o banco inicie primeiro
+
+  events-email-service:
+    build:
+      context: ../services/events-email-service
+    container_name: events-email-service
+    ports:
+      - "8082:8082"
+    networks:
+      - events-net
+    env_file:
+      - .env
 
   db:
     image: postgres
     container_name: events-db
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: eventos
+      POSTGRES_USER: ${DATASOURCE_USERNAME}
+      POSTGRES_PASSWORD: ${DATASOURCE_PASSWORD}
+      POSTGRES_DB: ${DATASOURCE_DB}
     ports:
       - "5432:5432"
     networks:

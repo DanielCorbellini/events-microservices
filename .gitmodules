@@ -1,3 +1,6 @@
 [submodule "services/events-user-service"]
 	path = services/events-user-service
 	url = https://github.com/LuccaHeineck/events-user-service
+[submodule "services/events-email-service"]
+	path = services/events-email-service
+	url = https://github.com/LuccaHeineck/events-email-service.git
