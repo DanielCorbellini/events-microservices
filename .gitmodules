@@ -7,3 +7,6 @@
 [submodule "services/events-gateway"]
 	path = services/events-gateway
 	url = https://github.com/LuccaHeineck/events-gateway.git
+[submodule "services/events-manager-service"]
+	path = services/events-manager-service
+	url = https://github.com/DanielCorbellini/event-manager-microservice.git

@@ -1,17 +1,31 @@
 version: "3.9"
 
 services:
-  # events-service:
-  #   build:
-  #     context: ../services/events-service
-  #   container_name: events-service
-  #   ports:
-  #     - "8081:8080"
-  #   networks:
-  #     - events-net
-  #   environment:
-  #     - SPRING_PROFILES_ACTIVE=dev
-  #     - SERVER_PORT=8080
+  events-manager-service:
+    build:
+      context: ../services/events-manager-service
+    container_name: events-manager
+    networks:
+      - events-net
+    volumes:
+      - ../services/events-manager-service:/var/www
+    depends_on:
+      - db
+
+  # Servidor nginx para hospedar o serviço de eventos
+  nginx:
+    image: nginx:latest
+    container_name: events-nginx
+    ports:
+      - "8084:80"
+    volumes:
+      - ../services/events-manager-service:/var/www
+      - ../services/events-manager-service/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - events-manager-service
+    networks:
+      - events-net
+
   events-gateway:
     build:
       context: ../services/events-gateway
