@@ -83,6 +83,7 @@ services:
       - events-net
     volumes:
       - pgdata:/var/lib/postgresql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
 volumes:
   pgdata:
