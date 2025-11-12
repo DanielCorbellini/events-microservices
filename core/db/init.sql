@@ -1,6 +1,7 @@
 -- ./db/init.sql
 CREATE TABLE public.usuarios (
   id_usuario SERIAL PRIMARY KEY,
+  is_admin BOOLEAN NOT NULL DEFAULT FALSE,
   nome TEXT NOT NULL,
   email TEXT,
   cpf TEXT,
@@ -8,6 +9,18 @@ CREATE TABLE public.usuarios (
   created_at TIMESTAMP DEFAULT now(),
   senha TEXT NOT NULL
 );
+
+-- Usuário administrador de teste
+INSERT INTO public.usuarios (is_admin, nome, email, cpf, telefone, senha)
+VALUES (
+  TRUE,
+  'Administrador',
+  'admin@gmail.com',
+  '00000000000',
+  '000000000',
+  '$2a$10$F60YWnAAalksjZBqpPt2LuYegV3dRPFIvnDE2xk21H.voGk03zx0m'
+)
+ON CONFLICT DO NOTHING;
 
 CREATE TABLE public.eventos (
   id_evento SERIAL PRIMARY KEY,
