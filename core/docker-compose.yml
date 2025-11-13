@@ -37,6 +37,7 @@ services:
     environment:
       - DEPLOYMENT_PORT=8080
       - SPRING_PROFILES_ACTIVE=dev
+      - GATEWAY_SECRET=${GATEWAY_SECRET}
     depends_on:
       - events-user-service
       - events-email-service
