@@ -17,7 +17,7 @@ services:
     image: nginx:latest
     container_name: events-nginx
     ports:
-      - "8084:80"
+      - "8084:8084"
     volumes:
       - ../services/events-manager-service:/var/www
       - ../services/events-manager-service/nginx.conf:/etc/nginx/conf.d/default.conf
