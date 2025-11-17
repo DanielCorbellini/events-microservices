@@ -10,3 +10,6 @@
 [submodule "services/events-manager-service"]
 	path = services/events-manager-service
 	url = https://github.com/DanielCorbellini/event-manager-microservice.git
+[submodule "services/events-certificates-service"]
+	path = services/events-certificates-service
+	url = https://github.com/DanielCorbellini/events-certificates-service.git

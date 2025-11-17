@@ -49,5 +49,6 @@ CREATE TABLE public.certificados (
   id_certificado SERIAL PRIMARY KEY,
   id_checkin INTEGER NOT NULL REFERENCES checkins(id_checkin),
   data_emissao TIMESTAMP DEFAULT now(),
-  hash_confirmacao TEXT UNIQUE
+  hash_confirmacao TEXT UNIQUE NOT NULL
+  -- caminho_arquivo TEXT
 );

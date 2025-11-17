@@ -26,6 +26,23 @@ services:
     networks:
       - events-net
 
+  events-certificates-service:
+    build:
+      context: ../services/events-certificates-service
+    container_name: events-certificates
+    ports:
+      - "8085:8085"
+    networks:
+      - events-net
+    environment:
+      - DATASOURCE_HOST=${DATASOURCE_HOST}
+      - DATASOURCE_PORT=${DATASOURCE_PORT}
+      - DATASOURCE_DB=${DATASOURCE_DB}
+      - DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
+      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+    depends_on:
+      - db
+
   events-gateway:
     build:
       context: ../services/events-gateway
