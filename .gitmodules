@@ -13,3 +13,6 @@
 [submodule "services/events-certificates-service"]
 	path = services/events-certificates-service
 	url = https://github.com/DanielCorbellini/events-certificates-service.git
+[submodule "services/events-frontend"]
+	path = services/events-frontend
+	url = https://github.com/LuccaHeineck/events-frontend.git
