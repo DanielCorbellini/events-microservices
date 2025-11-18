@@ -34,6 +34,8 @@ services:
       - "8085:8085"
     networks:
       - events-net
+    volumes:
+      - certificados_storage:/app/storage/certificados
     environment:
       - DATASOURCE_HOST=${DATASOURCE_HOST}
       - DATASOURCE_PORT=${DATASOURCE_PORT}
@@ -106,6 +108,7 @@ services:
 
 volumes:
   pgdata:
+  certificados_storage:
 networks:
   events-net:
     driver: bridge
