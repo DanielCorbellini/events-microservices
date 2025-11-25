@@ -52,3 +52,19 @@ CREATE TABLE public.certificados (
   hash_confirmacao TEXT UNIQUE NOT NULL
   -- caminho_arquivo TEXT
 );
+
+-- Eventos
+INSERT INTO public.eventos (titulo, data_inicio, data_fim, local)
+VALUES
+  ('Dev Summit Primavera', '2025-11-05', '2025-11-08', 'São Paulo - Auditório Tech'),
+  ('Workshop de UX para Devs', '2025-10-15', '2025-10-15', 'Porto Alegre - Laboratório');
+
+INSERT INTO public.eventos (titulo, data_inicio, data_fim, local)
+VALUES
+  ('Semana de IA Aplicada', '2025-11-24', '2025-11-28', 'Curitiba - Centro Digital'),
+  ('Bootcamp Kotlin Intensivo', '2025-11-23', '2025-11-27', 'Florianópolis - Hub Tech');
+
+INSERT INTO public.eventos (titulo, data_inicio, data_fim, local)
+VALUES
+  ('Encontro Nacional de Startups', '2025-12-10', '2025-12-12', 'Rio de Janeiro - Expo Center'),
+  ('Game Dev Festival', '2026-01-20', '2026-01-22', 'Belo Horizonte - Campus Expo');
