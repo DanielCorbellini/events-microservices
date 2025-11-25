@@ -3,7 +3,7 @@ CREATE TABLE public.usuarios (
   id_usuario SERIAL PRIMARY KEY,
   is_admin BOOLEAN NOT NULL DEFAULT FALSE,
   nome TEXT NOT NULL,
-  email TEXT,
+  email TEXT NOT NULL UNIQUE,
   cpf TEXT,
   telefone TEXT,
   created_at TIMESTAMP DEFAULT now(),
